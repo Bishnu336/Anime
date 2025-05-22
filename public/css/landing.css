@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to right, #0f2027, #203a43, #6b91a1);
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.nav-links button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Welcome text */
+.welcome-text {
+  text-align: center;
+  margin-top: 120px;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  font-weight: bold;
+}
+
+.welcome-text h1 {
+  text-transform: lowercase;
+  line-height: 1.4;
+}
+
+/* Overlapping images */
+.monitor-images {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monitor {
+  width: 50%;
+  max-width: 550px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Adjust overlap and spacing */
+.monitor-left {
+  z-index: 1;
+  margin-right: -50px;
+}
+
+.monitor-right {
+  z-index: 2;
+  margin-left: -50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-text h1 {
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+  .monitor-images {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .monitor-left,
+  .monitor-right {
+    margin: 0;
+    width: 90%;
+  }
+}
+
+}

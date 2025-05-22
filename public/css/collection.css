@@ -1,0 +1,113 @@
+/* Background and body */
+body.bg {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  color: white;
+  background: linear-gradient(to right, #0f2027, #203a43, #6b91a1);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  height: 50px;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Main content */
+.main-collection {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.collection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+/* Add new button */
+.add-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  margin: 20px;
+}
+
+.filter-buttons button {
+  margin: 0 5px;
+  background: white;
+  border: none;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-buttons button:hover {
+  background-color: #555;
+  color: white;
+}
+
+.filter-buttons button.active {
+  background-color: #333;
+  color: white;
+}
+
+/* Table styles */
+table {
+  width: 90%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+td button {
+  background-color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+td button:hover {
+  background-color: #ddd;
+}

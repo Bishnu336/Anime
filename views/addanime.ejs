@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Anime</title>
+  <link rel="stylesheet" href="/css/add.css" />
+</head>
+<body>
+  <header>
+    <div class="logo"> <img src="/images/logo.png" alt="Logo"> </div>
+    <nav>
+      <a href="/index">Home</a>
+      <a href="/collection">Collection</a>
+      <a href="/addanime">Add Anime</a>
+      <a href="#">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="form-title">ADD ANIME</h2>
+    <div class="form-container">
+      <!-- ✅ form method and action updated -->
+      <form id="animeForm" method="POST" action="/addanime">
+        <label for="animeTitle">Title</label>
+        <input type="text" id="animeTitle" name="title" placeholder="Add title" required>
+
+        <label for="animeGenre">Genre</label>
+        <input type="text" id="animeGenre" name="genre" placeholder="Add genre" required>
+
+        <label for="animeStatus">Status</label>
+        <input type="text" id="animeStatus" name="status" placeholder="e.g. Watching, Completed, Planned" required>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
+  <!-- Optional: keep your JS only if it’s needed for other logic -->
+  <!-- <script src="/js/add.js"></script> -->
+</body>
+</html>
