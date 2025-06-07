@@ -2,7 +2,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const userModel = require('../models/usermodel');
+const userModel = require('../models/userModel');
 const db = require('../config/db');
 
 
