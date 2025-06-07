@@ -8,22 +8,52 @@ body {
 header {
   background-color: #2c3e50;
   color: white;
-  padding: 15px;
+  padding: 15px 20px;
   text-align: center;
+  position: relative;
+}
+
+form[action="/logout"] {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  margin: 0;
+}
+
+form[action="/logout"] button {
+  padding: 6px 12px;
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+form[action="/logout"] button:hover {
+  background-color: #16a085;
 }
 
 nav {
   display: flex;
   background-color: #34495e;
+  flex-wrap: wrap;
 }
 
 nav button {
-  flex: 1;
+  flex: 1 1 33.33%;
   padding: 15px;
   background: none;
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #1abc9c;
 }
 
 nav button.active {
@@ -32,6 +62,7 @@ nav button.active {
 
 .container {
   padding: 20px;
+  overflow-x: auto; /* For horizontal scroll on smaller screens */
 }
 
 table {
@@ -39,18 +70,88 @@ table {
   border-collapse: collapse;
   background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  min-width: 600px; /* Ensure table doesn't shrink too much */
 }
 
 th, td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
+  white-space: nowrap;
 }
 
 th {
   background-color: #f4f4f4;
 }
 
-.actions button {
+.actions button,
+.actions a {
   margin-right: 5px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: #3498db;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:hover,
+.actions a:hover {
+  background-color: #2980b9;
+}
+
+.actions button.delete {
+  background-color: #e74c3c;
+}
+
+.actions button.delete:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  nav button {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  form[action="/logout"] {
+    position: static;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  table {
+    min-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  nav button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .actions button,
+  .actions a {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
 }

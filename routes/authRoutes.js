@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
+const isLoggedIn = require('../middleware/authMiddleware');
 
-// Redirect root to login
+
+// Show index.ejs as landing page
 router.get('/', (req, res) => {
-  res.redirect('/login');
+  res.render('index');  // This renders views/index.ejs
+});
+
+// Optional: redirect /index to the landing page as well
+router.get('/index', (req, res) => {
+  res.redirect('/');  // Just sends them to "/"
 });
 
 // Auth routes
@@ -14,11 +21,9 @@ router.post('/login', authController.login);
 router.get('/signup', authController.getSignup);
 router.post('/signup', authController.signup);
 
-// If you still need the home page, add it under a different route
-router.get('/home', authController.getIndex);
-
-router.get('/addanime', authController.getAddList);
-router.get('/collection', authController.getCollection);
-
+router.get('/home', isLoggedIn, authController.getIndex);
+router.get('/addanime', isLoggedIn, authController.getAddList);
+router.get('/collection', isLoggedIn, authController.getCollection);
+router.get('/verify-email', authController.verifyEmail);
 
 module.exports = router;

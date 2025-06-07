@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0; /* add margin 0 to avoid default */
 }
 
 .auth-card {
@@ -22,6 +23,7 @@
   margin: 0.5rem 0;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 1rem;
 }
 
 .auth-card button {
@@ -34,16 +36,11 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-size: 1rem;
 }
 
 .auth-card button:hover {
   background-color: #5b21b6;
-}
-
-.terms {
-  font-size: 0.9rem;
-  text-align: left;
-  margin: 0.5rem 0;
 }
 
 .switch-link {

@@ -10,55 +10,104 @@
 <body>
   <header>
     <h1>Admin Panel - Anime Dashboard</h1>
+    <form action="/logout" method="POST">
+    <button type="submit">Logout</button>
+    </form>
   </header>
 
   <nav>
     <button class="tab" onclick="showTab('users')">Users</button>
     <button class="tab" onclick="showTab('list')">Anime List</button>
-    <button class="tab" onclick="showTab('settings')">Settings</button>
     <button class="tab" onclick="showTab('logs')">Logs</button>
   </nav>
 
+
+    <!--User-->
   <div class="container">
     <div id="users" class="tab-content">
       <h2>Users</h2>
       <table>
-        <tr><th>Username</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr>
-        <tr><td>user123</td><td>user@mail.com</td><td>User</td><td>Active</td>
-            <td class="actions"><button>Promote</button><button>Suspend</button></td></tr>
+        <% users.forEach(user => { %>
+<tr>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= user.role %></td>
+  <td><%= user.status %></td>
+  <td class="actions">
+    <button onclick="suspendUser('<%= user.id %>')">Suspend</button>
+  </td>
+</tr>
+<% }) %>
+
       </table>
     </div>
 
+     <!--Anime List-->
     <div id="list" class="tab-content" style="display:none">
       <h2>Anime List</h2>
       <table>
-        <tr><th>Title</th><th>Genre</th><th>Status</th><th>Submitted By</th><th>Actions</th></tr>
-        <tr><td>Your Name</td><td>Romance</td><td>Completed</td><td>animeFan</td>
-            <td class="actions"><button>Edit</button><button>Delete</button></td></tr>
-      </table>
-    </div>
+  <tr>
+    <th>Title</th>
+    <th>Genre</th>
+    <th>Status</th>
+    <th>Submitted By</th>
+    <th>Actions</th>
+  </tr>
 
-    <div id="settings" class="tab-content" style="display:none">
-      <h2>Settings</h2>
-      <p>Manage roles, genres, and system settings here.</p>
-    </div>
+  <% animeList.forEach(anime => { %>
+  <% if (editId == anime.id.toString()) { %>
+    <!-- Update Form -->
+<form action="/admin/anime/<%= anime.id %>/update" method="POST">
+      <tr>
+        <td><input type="text" name="title" value="<%= anime.title %>"></td>
+        <td><input type="text" name="genre" value="<%= anime.genre %>"></td>
+        <td><input type="text" name="status" value="<%= anime.status %>"></td>
+        <td><%= anime.submitted_by || 'Unknown' %></td>
+        <td>
+          <button type="submit">Save</button>
+          <a href="/admin#list">Cancel</a>
+        </td>
+      </tr>
+    </form>
+  <% } else { %>
+    <tr>
+      <td><%= anime.title %></td>
+      <td><%= anime.genre %></td>
+      <td><%= anime.status %></td>
+      <td><%= anime.submitted_by || 'Unknown' %></td>
+      <td>
+        <a href="/admin?edit=<%= anime.id %>#list">Edit</a>
+        <!-- Delete Form -->
+      <form action="/admin/anime/<%= anime.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirmDelete(event)">
+      <button type="submit" style="background:red; color:white;">Delete</button>
+      </form>
 
+      </td>
+    </tr>
+  <% } %>
+<% }) %>
+
+  </table>
+</div>
+
+     <!--Logs-->
     <div id="logs" class="tab-content" style="display:none">
-      <h2>Logs</h2>
-      <table>
-        <tr><th>User</th><th>Action</th><th>Date</th></tr>
-        <tr><td>admin</td><td>Approved Anime: "Your Name"</td><td>2025-05-18</td></tr>
-      </table>
-    </div>
-  </div>
+  <h2>Logs</h2>
+  <table>
+    <tr><th>Action</th><th>Date</th></tr>
+    <% logList.forEach(log => { %>
+      <tr>
+        
+        <td><%= log.action %></td>
+        <td><%= new Date(log.date).toLocaleString() %></td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
-      document.getElementById(tabId).style.display = 'block';
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
+
+
+  <script src="/js/admin.js">
   </script>
 </body>
 </html>

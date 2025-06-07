@@ -1,19 +1,37 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+const db = require('../config/db');
+const userModel = require('../models/usermodel');
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+// Render profile page
+exports.getProfile = (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+  res.render('profile', {
+    user: {
+      id: req.session.userId,
+      name: req.session.userName,
+      email: req.session.userEmail,
+    }
+  });
+};
 
-// View engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+// Render home page
+exports.getIndex = (req, res) => {
+  res.render('home');
+};
 
-// Routes
-const authRoutes = require('./routes/authRoutes');
-app.use('/', authRoutes);
+// Render anime collection page
+exports.getCollection = async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM anime_collection');
+    res.render('collection', { animes: result.rows });
+  } catch (err) {
+    console.error(err);
+    res.render('collection', { animes: [], message: 'Failed to load anime list.' });
+  }
+};
 
-// Server
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+// Render add-anime form
+exports.getAddList = (req, res) => {
+  res.render('addanime');
+};
