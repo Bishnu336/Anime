@@ -1,5 +1,5 @@
 const animeModel = require('../models/animeModel');
-const userModel = require('../models/usermodel');
+const userModel = require('../models/userModel');
 const logModel = require('../models/logModel');
 const db = require('../config/db');
 
