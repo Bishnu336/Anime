@@ -1,5 +1,5 @@
 const db = require('../config/db');
-const userModel = require('../models/usermodel');
+const userModel = require('../models/userModel');
 
 // Render profile page
 exports.getProfile = (req, res) => {
